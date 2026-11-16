@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Grades</title>
+<style>
+body { font-family: Arial; background: #f2f2f2; text-align: center; padding: 20px; }
+.box { background: white; padding: 20px; border-radius: 10px; max-width: 350px; margin: auto; }
+input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
+button { background: green; color: white; padding: 10px 20px; border: none; border-radius: 5px; }
+table { width: 100%; margin-top: 15px; border-collapse: collapse; }
+td, th { border: 1px solid #ccc; padding: 8px; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+
+<div class="box" id="loginBox">
+  <h2>Login to see Grades</h2>
+  <input type="email" id="email" placeholder="Enter your email">
+  <input type="password" id="password" placeholder="Enter password">
+  <button onclick="login()">Login</button>
+  <p>Try: student@gmail.com / 1234</p>
+</div>
+
+<div class="box hidden" id="gradesBox">
+  <h2>Welcome!</h2>
+  <p id="showEmail"></p>
+  <table>
+    <tr><th>Subject</th><th>Grade</th></tr>
+    <tr><td>Maths</td><td>A</td></tr>
+    <tr><td>English</td><td>B+</td></tr>
+    <tr><td>Kiswahili</td><td>A-</td></tr>
+    <tr><td>Science</td><td>B</td></tr>
+    <tr><td>Computer</td><td>A</td></tr>
+  </table>
+  <br>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+function login() {
+  let email = document.getElementById("email").value;
+  let pass = document.getElementById("password").value;
+
+  if (email == "student@gmail.com" && pass == "1234") {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("gradesBox").classList.remove("hidden");
+    document.getElementById("showEmail").innerText = "Logged in as: " + email;
+  } else {
+    alert("Wrong email or password");
+  }
+}
+function logout() {
+  document.getElementById("gradesBox").classList.add("hidden");
+  document.getElementById("loginBox").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
