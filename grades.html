@@ -1,60 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>My Grades</title>
+<title>Eldoret Grades - 100 Students</title>
 <style>
-body { font-family: Arial; background: #f2f2f2; text-align: center; padding: 20px; }
-.box { background: white; padding: 20px; border-radius: 10px; max-width: 350px; margin: auto; }
-input { width: 90%; padding: 10px; margin: 10px 0; border-radius: 5px; border: 1px solid #ccc; }
-button { background: green; color: white; padding: 10px 20px; border: none; border-radius: 5px; }
-table { width: 100%; margin-top: 15px; border-collapse: collapse; }
-td, th { border: 1px solid #ccc; padding: 8px; }
-.hidden { display: none; }
+body{font-family:Arial;background:#f0f0f0;text-align:center;padding:20px}
+.box{background:white;max-width:500px;margin:auto;padding:20px;border-radius:15px}
+input{width:85%;padding:12px;font-size:18px;margin:8px}
+button{background:green;color:white;padding:12px 25px;font-size:18px;border:none;border-radius:8px}
+#answer{margin-top:20px;text-align:left;background:#e8ffe8;padding:15px;border-radius:10px}
 </style>
 </head>
 <body>
-
-<div class="box" id="loginBox">
-  <h2>Login to see Grades</h2>
-  <input type="email" id="email" placeholder="Enter your email">
-  <input type="password" id="password" placeholder="Enter password">
-  <button onclick="login()">Login</button>
-  <p>Try: student@gmail.com / 1234</p>
-</div>
-
-<div class="box hidden" id="gradesBox">
-  <h2>Welcome!</h2>
-  <p id="showEmail"></p>
-  <table>
-    <tr><th>Subject</th><th>Grade</th></tr>
-    <tr><td>Maths</td><td>A</td></tr>
-    <tr><td>English</td><td>B+</td></tr>
-    <tr><td>Kiswahili</td><td>A-</td></tr>
-    <tr><td>Science</td><td>B</td></tr>
-    <tr><td>Computer</td><td>A</td></tr>
-  </table>
-  <br>
-  <button onclick="logout()">Logout</button>
+<div class="box">
+<h1>🎓 Check Results</h1>
+<p>Admission + College Number</p>
+<input id="adm" placeholder="Admission e.g. ADM001"><br>
+<input id="pin" placeholder="College No e.g. 2024/001"><br>
+<button onclick="check()">Check Results</button>
+<div id="answer">Enter details...</div>
 </div>
 
 <script>
-function login() {
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
+// --- ADD YOUR 100 STUDENTS HERE ---
+// Format: "ADM001": {pin:"2024/001", name:"Brian", grades:"Math: A, English: B+"}
+let students = {
+"ADM001": {pin:"2024/001", name:"Brian Kiprop", grades:"Math: A<br>English: B+<br>Kiswahili: A-<br>Science: B"},
+"ADM002": {pin:"2024/002", name:"Faith Chebet", grades:"Math: A-<br>English: A<br>Kiswahili: B+<br>Science: A-"},
+"ADM003": {pin:"2024/003", name:"Kevin Otieno", grades:"Math: B<br>English: C+<br>Kiswahili: B<br>Science: B-"},
+// --- COPY THIS LINE AND PASTE 100 TIMES, JUST CHANGE NUMBERS ---
+};
 
-  if (email == "student@gmail.com" && pass == "1234") {
-    document.getElementById("loginBox").classList.add("hidden");
-    document.getElementById("gradesBox").classList.remove("hidden");
-    document.getElementById("showEmail").innerText = "Logged in as: " + email;
-  } else {
-    alert("Wrong email or password");
-  }
+function check(){
+let code=document.getElementById("adm").value.toUpperCase().trim();
+let pin=document.getElementById("pin").value.trim();
+let box=document.getElementById("answer");
+if(students[code] && students[code].pin===pin){
+box.innerHTML="✅ Welcome "+students[code].name+"<br><br>"+students[code].grades;
+}else{
+box.innerHTML="❌ Wrong Admission or College Number! Try again.";
 }
-function logout() {
-  document.getElementById("gradesBox").classList.add("hidden");
-  document.getElementById("loginBox").classList.remove("hidden");
 }
 </script>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+<title>Eldoret Grades - 100 Students</title>
+<style>
+body{font-family:Arial;background:#f0f0f0;text-align:center;padding:20px}
+.box{background:white;max-width:500px;margin:auto;padding:20px;border-radius:15px}
+input{width:85%;padding:12px;font-size:18px;margin:8px}
+button{background:green;color:white;padding:12px 25px;font-size:18px;border:none;border-radius:8px}
+#answer{margin-top:20px;text-align:left;background:#e8ffe8;padding:15px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="box">
+<h1>🎓 Check Results</h1>
+<p>Admission + College Number</p>
+<input id="adm" placeholder="Admission e.g. ADM001"><br>
+<input id="pin" placeholder="College No e.g. 2024/001"><br>
+<button onclick="check()">Check Results</button>
+<div id="answer">Enter details...</div>
+</div>
 
+<script>
+// --- ADD YOUR 100 STUDENTS HERE ---
+// Format: "ADM001": {pin:"2024/001", name:"Brian", grades:"Math: A, English: B+"}
+let students = {
+"ADM001": {pin:"2024/001", name:"Brian Kiprop", grades:"Math: A<br>English: B+<br>Kiswahili: A-<br>Science: B"},
+"ADM002": {pin:"2024/002", name:"Faith Chebet", grades:"Math: A-<br>English: A<br>Kiswahili: B+<br>Science: A-"},
+"ADM003": {pin:"2024/003", name:"Kevin Otieno", grades:"Math: B<br>English: C+<br>Kiswahili: B<br>Science: B-"},
+// --- COPY THIS LINE AND PASTE 100 TIMES, JUST CHANGE NUMBERS ---
+};
+
+function check(){
+let code=document.getElementById("adm").value.toUpperCase().trim();
+let pin=document.getElementById("pin").value.trim();
+let box=document.getElementById("answer");
+if(students[code] && students[code].pin===pin){
+box.innerHTML="✅ Welcome "+students[code].name+"<br><br>"+students[code].grades;
+}else{
+box.innerHTML="❌ Wrong Admission or College Number! Try again.";
+}
+}
+</script>
 </body>
 </html>
